@@ -1,0 +1,31 @@
+{% extends "base.html" %}{% block content %}
+<h1>Agenda du gestionnaire</h1>
+<form method="get" class="filters">
+  <select name="statut"><option value="">Tous les statuts</option>
+  {% for v,l in statuts %}<option value="{{ v }}" {% if v == request.GET.statut %}selected{% endif %}>{{ l }}</option>{% endfor %}
+  </select>
+  <button>Filtrer</button>
+  <a class="btn btn-ghost" href="{% url 'creneau_creer' %}">+ Nouveau créneau</a>
+</form>
+{% if page_obj %}
+<div class="table-wrap"><table>
+<tr><th>Service</th><th>Date</th><th>Horaire</th><th>Usager</th><th>Motif</th><th>Statut</th><th>Action</th></tr>
+{% for r in page_obj %}
+<tr>
+  <td><strong>{{ r.creneau.service }}</strong></td>
+  <td>{{ r.creneau.date|date:"d/m/Y" }}</td>
+  <td>{{ r.creneau.heure_debut|time:"H:i" }} – {{ r.creneau.heure_fin|time:"H:i" }}</td>
+  <td>{{ r.utilisateur }}</td>
+  <td>{{ r.motif }}</td>
+  <td><span class="badge {{ r.statut }}">{{ r.get_statut_display }}</span></td>
+  <td>{% if r.statut == "reserve" %}
+    <form method="post" action="{% url 'marquer' r.pk %}">{% csrf_token %}
+      <button name="statut" value="realise" class="btn-ok btn-sm">✔ Réalisé</button>
+      <button name="statut" value="absent" class="btn-danger btn-sm">✖ Absent</button>
+    </form>{% endif %}</td>
+</tr>
+{% endfor %}
+</table></div>
+{% else %}<div class="empty">Aucun rendez-vous.</div>{% endif %}
+{% include "_pagination.html" %}
+{% endblock %}

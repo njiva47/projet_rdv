@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block content %}
+<h1>Mes rendez-vous</h1>
+{% if page_obj %}
+<div class="table-wrap"><table>
+<tr><th>Service</th><th>Date</th><th>Horaire</th><th>Motif</th><th>Statut</th><th></th></tr>
+{% for r in page_obj %}
+<tr>
+  <td><strong>{{ r.creneau.service }}</strong></td>
+  <td>{{ r.creneau.date|date:"d/m/Y" }}</td>
+  <td>{{ r.creneau.heure_debut|time:"H:i" }} – {{ r.creneau.heure_fin|time:"H:i" }}</td>
+  <td>{{ r.motif }}</td>
+  <td><span class="badge {{ r.statut }}">{{ r.get_statut_display }}</span></td>
+  <td>{% if r.peut_annuler %}
+    <form method="post" action="{% url 'annuler' r.pk %}" onsubmit="return confirm('Annuler ce rendez-vous ?')">{% csrf_token %}<button class="btn-danger btn-sm">Annuler</button></form>
+  {% endif %}</td>
+</tr>
+{% endfor %}
+</table></div>
+{% else %}<div class="empty">Vous n'avez pas encore de rendez-vous. <a href="{% url 'creneaux' %}">Réserver un créneau</a></div>{% endif %}
+{% include "_pagination.html" %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="form-card">
+  <h1>Confirmer le rendez-vous</h1>
+  <p><strong>{{ creneau.service }}</strong><span>{{ creneau.date|date:"l d F Y" }} · {{ creneau.heure_debut|time:"H:i" }} – {{ creneau.heure_fin|time:"H:i" }}</span></p>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button>Confirmer la réservation</button></form>
+  <p class="alt"><a href="{% url 'creneaux' %}">← Retour aux créneaux</a></p>
+</div>
+{% endblock %}

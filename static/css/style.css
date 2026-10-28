@@ -1,0 +1,80 @@
+:root{--primary:#4f46e5;--primary-d:#4338ca;--bg:#f4f5fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;--radius:14px;--shadow:0 4px 20px rgba(31,41,55,.07)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:1000px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Navigation */
+.navbar{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;box-shadow:var(--shadow)}
+.navbar .inner{max-width:1000px;margin:auto;padding:.8rem 1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
+.brand{font-weight:700;font-size:1.2rem;color:#fff;margin-right:auto}
+.navbar a,.navbar .linklike{color:#fff;padding:.4rem .8rem;border-radius:8px;font-size:.95rem;opacity:.9}
+.navbar a:hover,.navbar a.active,.navbar .linklike:hover{background:rgba(255,255,255,.18);opacity:1}
+.linklike{background:none;border:0;cursor:pointer;font:inherit;font-size:.95rem}
+.navbar form{margin:0}
+
+/* Messages */
+.alert{padding:.8rem 1rem;border-radius:10px;margin-bottom:1rem;border-left:5px solid;font-weight:500}
+.alert.success{background:#ecfdf5;color:#065f46;border-color:#10b981}
+.alert.error{background:#fef2f2;color:#991b1b;border-color:#ef4444}
+.alert.info{background:#eff6ff;color:#1e40af;border-color:#3b82f6}
+
+/* Titres et hero */
+h1{font-size:1.7rem;margin:.2rem 0 1rem}
+.hero{background:var(--card);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1.2rem}
+.hero p{margin:0;color:var(--muted)}
+
+/* Boutons */
+.btn,button{display:inline-block;background:var(--primary);color:#fff;border:0;border-radius:10px;padding:.55rem 1.1rem;font:inherit;font-weight:600;cursor:pointer;transition:.15s}
+.btn:hover,button:hover{background:var(--primary-d);transform:translateY(-1px)}
+.navbar button.linklike{background:none;transform:none;font-weight:400;padding:.4rem .8rem}
+.btn-ghost{background:#eef2ff;color:var(--primary)}
+.btn-ghost:hover{background:#e0e7ff}
+.btn-danger{background:#fee2e2;color:#b91c1c}
+.btn-danger:hover{background:#fecaca}
+.btn-ok{background:#d1fae5;color:#047857}
+.btn-ok:hover{background:#a7f3d0}
+.btn-sm{padding:.3rem .7rem;font-size:.85rem}
+
+/* Formulaires */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;background:var(--card);padding:1rem;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.2rem}
+input,select,textarea{font:inherit;padding:.55rem .75rem;border:1px solid var(--border);border-radius:10px;background:#fff;max-width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid #c7d2fe;border-color:var(--primary)}
+.form-card{max-width:480px;margin:1rem auto;background:var(--card);padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow)}
+.form-card p{display:flex;flex-direction:column;gap:.3rem;margin:0 0 1rem}
+.form-card label{font-weight:600;font-size:.9rem}
+.form-card input[type=checkbox]{width:auto;align-self:flex-start}
+.form-card input:not([type=checkbox]),.form-card select,.form-card textarea{width:100%}
+.form-card button{width:100%;margin-top:.5rem}
+.helptext,.form-card ul{font-size:.8rem;color:var(--muted);margin:.2rem 0;padding-left:1.1rem}
+.form-card .errorlist{color:#b91c1c;list-style:none;padding:0;font-size:.85rem}
+.form-card .alt{text-align:center;margin-top:1rem;font-size:.9rem;color:var(--muted)}
+
+/* Cartes de créneaux */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.slot{background:var(--card);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow);border-top:4px solid var(--primary);display:flex;flex-direction:column;gap:.4rem}
+.slot:hover{transform:translateY(-3px);transition:.2s}
+.slot .service{font-weight:700;font-size:1.05rem}
+.slot .date{color:var(--muted);text-transform:capitalize}
+.slot .time{font-size:1.4rem;font-weight:700;color:var(--primary)}
+.slot .btn{margin-top:.6rem;text-align:center}
+.empty{text-align:center;color:var(--muted);padding:3rem 1rem;background:var(--card);border-radius:var(--radius)}
+
+/* Tableaux */
+.table-wrap{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{background:#f9fafb;text-align:left;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+th,td{padding:.8rem 1rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:0}
+td form{display:inline;margin:0}
+
+/* Badges de statut */
+.badge{display:inline-block;padding:.2rem .7rem;border-radius:999px;font-size:.8rem;font-weight:600}
+.badge.reserve{background:#dbeafe;color:#1d4ed8}
+.badge.annule{background:#f3f4f6;color:#6b7280}
+.badge.realise{background:#d1fae5;color:#047857}
+.badge.absent{background:#fee2e2;color:#b91c1c}
+
+/* Pagination */
+.pager{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1.2rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}{% block content %}
+<div class="hero">
+  <h1>Réservez votre créneau</h1>
+  <p>Choisissez un service, une date, et confirmez en quelques clics.</p>
+</div>
+<form method="get" class="filters">
+  <select name="service"><option value="">Tous les services</option>
+  {% for s in services %}<option value="{{ s.id }}" {% if s.id|stringformat:"s" == service_id %}selected{% endif %}>{{ s.nom }}</option>{% endfor %}
+  </select>
+  <input type="date" name="date" value="{{ date }}">
+  <button>Filtrer</button>
+  <a class="btn btn-ghost" href="{% url 'creneaux' %}">Réinitialiser</a>
+</form>
+{% if page_obj %}
+<div class="grid">
+  {% for c in page_obj %}
+  <div class="slot">
+    <span class="service">{{ c.service }}</span>
+    <span class="date">{{ c.date|date:"l d F Y" }}</span>
+    <span class="time">{{ c.heure_debut|time:"H:i" }} – {{ c.heure_fin|time:"H:i" }}</span>
+    <a class="btn" href="{% url 'reserver' c.pk %}">Réserver</a>
+  </div>
+  {% endfor %}
+</div>
+{% else %}<div class="empty">😕 Aucun créneau disponible pour ces critères.</div>{% endif %}
+{% include "_pagination.html" %}
+{% endblock %}

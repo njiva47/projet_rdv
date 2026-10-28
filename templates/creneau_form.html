@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="form-card">
+  <h1>Nouveau créneau</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button>Enregistrer</button></form>
+</div>
+{% endblock %}
