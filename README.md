@@ -9,6 +9,7 @@ Python 3.10+ et Git.
 ## Installation (Windows PowerShell)
 ```powershell
 git clone <URL_DU_DEPOT>
+git clone https://github.com/njiva47/projet_rdv.git
 cd projet_rdv
 python -m venv venv
 venv\Scripts\activate
