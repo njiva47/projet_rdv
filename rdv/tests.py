@@ -34,3 +34,9 @@ class RdvTests(TestCase):
         r = RendezVous.objects.create(creneau=self.c, utilisateur=self.u1, motif="x")
         self.client.force_login(self.u2)
         self.assertEqual(self.client.post(reverse("annuler", args=[r.pk])).status_code, 404)
+
+    def test_gestionnaire_ne_peut_pas_reserver(self):  # restriction d'accès
+        g = User.objects.create_user("gest", is_staff=True)
+        self.client.force_login(g)
+        self.client.post(reverse("reserver", args=[self.c.pk]), {"motif": "x"})
+        self.assertEqual(RendezVous.objects.count(), 0)

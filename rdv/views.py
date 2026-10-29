@@ -54,6 +54,9 @@ def creneaux(request):
 
 @login_required
 def reserver(request, pk):
+    if request.user.is_staff:
+        messages.error(request, "Un gestionnaire ne peut pas réserver de rendez-vous.")
+        return redirect("creneaux")
     creneau = get_object_or_404(Creneau, pk=pk)
     if not creneau.est_reservable:
         messages.error(request, "Ce créneau n'est plus réservable.")

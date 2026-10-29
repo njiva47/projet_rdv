@@ -18,7 +18,7 @@
     <span class="service">{{ c.service }}</span>
     <span class="date">{{ c.date|date:"l d F Y" }}</span>
     <span class="time">{{ c.heure_debut|time:"H:i" }} – {{ c.heure_fin|time:"H:i" }}</span>
-    <a class="btn" href="{% url 'reserver' c.pk %}">Réserver</a>
+    {% if not user.is_staff %}<a class="btn" href="{% url 'reserver' c.pk %}">Réserver</a>{% endif %}
   </div>
   {% endfor %}
 </div>
